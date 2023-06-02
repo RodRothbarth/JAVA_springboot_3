@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Pattern;
 import med.voll.api.domain.address.Address;
 
 public record MedicoDTO(
-        @NotBlank
+        @NotBlank(message = "Nome é obrigatório")
         String nome,
         @Email
         @NotBlank

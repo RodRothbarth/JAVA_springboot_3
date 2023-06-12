@@ -31,6 +31,41 @@ public class SecurityConfig {
                 .build();
     }
 
+//para adicionar Roles ao projeto
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        return http.csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and().authorizeHttpRequests()
+//                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+//                .requestMatchers(HttpMethod.DELETE, "/medicos").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.DELETE, "/pacientes").hasRole("ADMIN")
+//                .anyRequest().authenticated()
+//                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+//                .build();
+//    }
+
+//    roles por anotation
+//    No exemplo de código anterior o método foi anotado com @Secured("ROLE_ADMIN"),
+//    para que apenas usuários com o perfil ADMIN possam disparar requisições para detalhar um médico.
+//    A anotação @Secured pode ser adicionada em métodos individuais ou mesmo na classe, que seria o equivalente a adicioná-la em todos os métodos.
+//
+//    Atenção! Por padrão esse recurso vem desabilitado no spring Security, sendo que para o utilizar devemos adicionar a seguinte anotação na classe Securityconfigurations do projeto:
+//    @EnableMethodSecurity(securedEnabled = true)
+
+    //Para springboot3.1 algumas modanças foram adicionadas
+    // @Bean
+    //public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    //    return http.csrf(csrf -> csrf.disable())
+    //            .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+    //            .authorizeHttpRequests(req -> {
+    //                req.requestMatchers(HttpMethod.POST, "/login").permitAll();
+    //                req.anyRequest().authenticated();
+    //            })
+    //            .addFilterBefore(new UsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+    //            .build();
+    //}
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
         return config.getAuthenticationManager();

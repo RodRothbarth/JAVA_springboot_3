@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.address.Address;
+import med.voll.api.domain.medico.UpdateMedicoDTO;
 
 @Table(name ="pacientes")
 @Entity(name = "Paciente")
@@ -35,6 +36,33 @@ public class Paciente {
         this.active = true;
     }
 
+    public void updateData(UpdatePacienteDTO patientInfo){
+        if(patientInfo.nome() != null){
+         this.nome = patientInfo.nome();
+        }
+        if(patientInfo.telefone() != null){
+            this.telefone = patientInfo.telefone();
+        }
+        if(patientInfo.address() != null){
+            this.address.updateAddress(patientInfo.address());
+        }
+    }
+
+
+    public void updateData(UpdateMedicoDTO medicInfo) {
+
+        if(medicInfo.nome() != null){
+            this.nome = medicInfo.nome();
+        };
+        if(medicInfo.telefone() != null){
+
+            this.telefone = medicInfo.telefone();
+        };
+        if(medicInfo.address() != null){
+            this.address.updateAddress(medicInfo.address());
+        };
+
+    }
     public void softDelete() {
         this.active = false;
     }
